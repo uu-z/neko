@@ -1,0 +1,14 @@
+.container {
+  margin: 5vh 0 2vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center
+}
+
+.option {
+  padding: 1vh;
+}
+
+.option:active {
+  color: #FFDD00
+}

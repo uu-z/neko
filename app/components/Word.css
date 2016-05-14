@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+  padding: 0 5vw 5vw 5vw;
+}
+
+.lineBox {
+  flex: 1;
+}
+
+.buttonBox {
+  margin: 1vh;
+  padding: 1vh;
+  min-height: 4vh;
+  align-self: center;
+  border-radius: .15rem;
+}
+.buttonBox:hover {
+  background: #3A4750;
+  color: #FFDD00
+}
+.buttonBox:active {
+  background: #FFDD00;
+  color: #583C87
+}
+
+.buttonText {
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+.buttonSpan {
+  color: #B485D8;
+  padding-left: 1vw
+}
+.buttonSpan:active {
+  color: #3E1E68;
+}
