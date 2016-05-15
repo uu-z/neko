@@ -3,6 +3,7 @@ import styles from './Option.css'
 import classnames from 'classnames'
 import { connect } from 'react-redux'
 import {handleOptionChange} from '../actions/index'
+import { ipcRenderer } from 'electron'
 
 class Option extends Component {
   constructor(props){
@@ -17,19 +18,19 @@ class Option extends Component {
   render() {
     const { isopen } = this.props
     
-    // const optionStyle = classnames([styles.option,{
-    //   'fa': true,
-    //   'fa-circle-o': !isopen,
-    //   'fa-dot-circle-o' : isopen,
-    //   'fa-lg': true,
-    // }])
+    const optionStyle = classnames([styles.option,{
+      'fa': true,
+      'fa-circle-o': !isopen,
+      'fa-dot-circle-o' : isopen,
+      'fa-lg': true,
+    }])
     const optionText = isopen ? 'Romaji' : 'Katakana'
     
     return (
       <div 
         onClick={()=> this.handleClick()}
         className={styles.container}>
-        <span className={styles.option}>{optionText}</span>
+        <span className={optionStyle}></span>
       </div>
     )
   }

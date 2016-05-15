@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import styles from './Word.css'
+import { ipcRenderer, ipcMain } from 'electron'
+import classnames from 'classnames'
+import {handleOptionChange} from '../actions/index'
+import { connect } from 'react-redux'
 
 const KATAKANA = {
 あ:"ア",
@@ -98,22 +102,37 @@ const ROMAJI = {
 を:"o",
 }
 
-export default class Word extends Component {
+function handleAudioPlay(soundName){
+    let audio = new Audio(`../wav/${soundName}.wav`)
+    audio.play()
+  }
+
+
+class Word extends Component {
   constructor(props){
     super(props)
     
   this.renderLine = this.renderLine.bind(this)
-  this.handleAudioPlay = this.handleAudioPlay.bind(this)
   }
+  
+  // componentDidMount(){
+  //   const { handleOptionChange } = this.props
+  //  ipcRenderer.on('global-shortcut', function(event,arg){
+  //    handleOptionChange('clickWord',arg,'word')
+  //    handleAudioPlay(arg)
+  //   })
+  // }
   
   renderLine(data){
     const {isopen} = this.props
     const secondWord = isopen ? ROMAJI : KATAKANA
+    
+    
     return(
       data.map((word,i) =>
         <div 
-          onClick={()=> this.handleAudioPlay(word)}
-          key={i} className={styles.buttonBox}>
+          onClick={()=> handleAudioPlay(word)}
+          key={i} className={[styles.buttonBox]}>
           <p 
             className={styles.buttonText}>
             {word}
@@ -126,10 +145,6 @@ export default class Word extends Component {
     )
   }
   
-  handleAudioPlay(soundName){
-    let audio = new Audio(`../wav/${soundName}.wav`)
-    audio.play()
-  }
   
   render() {
     
@@ -152,3 +167,11 @@ export default class Word extends Component {
     )
   }
 }
+
+function mapStateToProps(state){
+  return{}
+}
+
+export default connect(mapStateToProps, {
+  handleOptionChange
+})(Word)

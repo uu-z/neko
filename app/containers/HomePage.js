@@ -9,12 +9,12 @@ class HomePage extends Component {
   }
   
   render() {
-    const {isopen} = this.props
+    const {isopen, clickWord} = this.props
     
     return (
       <div>
         <Option isopen={isopen}/>
-        <Word isopen={isopen}/>
+        <Word isopen={isopen} clickWord={clickWord}/>
       </div>
     )
   }
@@ -22,11 +22,13 @@ class HomePage extends Component {
 
 function mapStateToProps(state,props){
   const  {
-    option: {isopen}
+    option: {isopen},
+    word: {clickWord}
   } = state
  
   return {
-    isopen
+    isopen,
+    clickWord
   }
 }
 
